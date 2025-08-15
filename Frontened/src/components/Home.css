@@ -1,0 +1,139 @@
+main {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  padding: 2rem;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+
+main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/job.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.15; 
+  z-index: 0;
+}
+
+
+main > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+.img-1, .img-2, .img-3 {
+  position: absolute;
+  height: 200px;
+  width: 200px;
+}
+
+.img-1 img, .img-2 img, .img-3 img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover; 
+  border-radius: 8px;
+  opacity: 0.2; 
+  transition: opacity 0.3s ease;
+}
+
+.img-1 img:hover, .img-2 img:hover, .img-3 img:hover {
+  opacity: 0.4;
+}
+
+.img-1 {
+  top: 20px;
+  left: 20px;
+}
+
+.img-2 {
+  bottom: 50px;
+  left: 20px;
+}
+
+.img-3 {
+  top: 20%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+
+main h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+
+main p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+  color: #374151; 
+}
+
+
+.btn-all {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nav-btn ,.nav-btn2{
+  padding: 0.8rem 1.5rem;
+ 
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease, transform 0.1s ease;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.nav-btn{
+     background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+}
+.nav-btn2{
+    background: linear-gradient(125deg,rgb(227, 209, 6));
+    color: black;
+}
+.nav-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+}
+
+.nav-btn2:hover{
+    background: linear-gradient(125deg,rgb(227, 209, 6));
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(191, 213, 129, 0.4);
+}
+
+.nav-btn:active {
+  transform: scale(0.98);
+}
+
+
+
+
+@media (max-width: 480px) {
+  .img-1, .img-2, .img-3 {
+    height: 150px;
+    width: 150px;
+  }
+}

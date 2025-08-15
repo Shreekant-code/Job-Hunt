@@ -1,0 +1,128 @@
+
+.newsletter {
+  text-align: center;
+  background: linear-gradient(to right, #7c8caf, #1d4ed8);
+  color: white;
+  padding: 3rem 1rem;
+}
+
+.newsletter h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  margin-bottom: 0.5rem;
+}
+
+.newsletter p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.newsletter-form input {
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: none;
+  min-width: 250px;
+  flex: 1;
+  max-width: 400px;
+}
+
+.newsletter-form button {
+  padding: 0.75rem 1.5rem;
+  background: #facc15;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.newsletter-form button:hover {
+  background: #eab308;
+}
+
+/* CTA Footer */
+.cta-footer {
+  background: #111827;
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.cta-buttons button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.browse-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.browse-btn:hover {
+  background: #1d4ed8;
+}
+
+.post-btn {
+  background: #facc15;
+  color: #111827;
+}
+
+.post-btn:hover {
+  background: #eab308;
+}
+
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-links a {
+  color: white;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #facc15;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cta-buttons button {
+    width: 100%;
+  }
+}

@@ -1,20 +1,15 @@
-import express from "express"
-import connect_db from "./database/dbconnect.js";
-import route from "./database/Schema/Route/route.js";
-import cors from "cors";
+import express from "express";
 const app=express();
-app.use(cors());
-const Port=3000;
-
-const database_url="mongodb://localhost:27017"
-await connect_db(database_url)
+import dotenv from "dotenv";
+import db_connect from "./Database/db_connect.js";
+import router from "./Routes/route.js";
+dotenv.config();
+const Port=process.env.Port || 5000;
+await db_connect();
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-app.use("/",route);
+app.use("/",router);
 
 app.listen(Port,()=>{
-    console.log(`The Port is Running On ${Port}`);
+    console.log(`The port is running on ${Port}`);
 })
-
-

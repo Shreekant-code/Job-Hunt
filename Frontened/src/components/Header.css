@@ -1,0 +1,24 @@
+header{
+  height: 80px;
+ width: 100%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.img-container{
+  height: 80px;
+  width: 80px;
+}
+img{
+  width: 100%;
+  height: 100%;
+  
+}
+
+header 
+h1,p{
+  color: white;
+}
