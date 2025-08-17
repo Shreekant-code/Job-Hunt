@@ -45,7 +45,7 @@ export const LoginAdmin = async (req, res) => {
       return res.status(400).json({ message: "Invalid Email or Password" });
     }
 
-    // Generate JWT token
+  
     const token = jwt.sign(
       { id: existAdmin._id, role: "admin" },
       process.env.JWT_SECRET,
@@ -59,7 +59,7 @@ export const LoginAdmin = async (req, res) => {
         id: existAdmin._id,
         name: existAdmin.name,
         email: existAdmin.email,
-        role: "admin"
+        
       }
     });
     

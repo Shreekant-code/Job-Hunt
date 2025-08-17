@@ -1,0 +1,175 @@
+/* ---------------- HEADER ---------------- */
+.header-admin {
+ position: fixed;
+ top: 0;
+ right: 0;
+ left: 0;
+  
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  
+  z-index: 1000;
+  background-color: #0a0b0b;
+  color: #fff;
+ 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Wrap title + logout in flex center */
+.admin-detail {
+  flex: 1;
+  display: flex;
+  justify-content: center;  /* centers "Welcome Admin" */
+  align-items: center;
+  position: relative;
+}
+
+.header-admin h1 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+/* Logout button inside header */
+.logout-btn {
+  position: absolute;
+  right: 0;                     /* keep it at far right */
+  background: #e63946;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-right: 30px;
+}
+
+.logout-btn:hover {
+  background: #d62828;
+}
+
+
+.icon-slider {
+  font-size: 1.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  z-index: 1001; 
+}
+
+
+.full-page {
+  display: flex;
+  margin-top: 80px;           
+  height: calc(100vh - 80px);
+  overflow: hidden;
+  position: relative;
+  background: #f4f6f9;
+}
+
+/* ---------------- SIDEBAR ---------------- */
+.sidebar-detail {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 220px;
+  height: calc(100vh - 80px);
+  background-color: #0d6efd;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  box-shadow: 3px 0 6px rgba(0,0,0,0.2);
+  transform: translateX(-100%); /* hidden by default */
+  transition: transform 0.3s ease-in-out;
+  z-index: 999;
+}
+
+/* Sidebar open */
+.sidebar-detail.open {
+  transform: translateX(0);
+}
+
+/* Sidebar links */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.3s, padding-left 0.3s;
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  padding-left: 20px;
+}
+
+/* Active link */
+.sidebar-link.active {
+  background-color: rgba(0,0,0,0.25);
+  font-weight: 600;
+}
+
+/* Sidebar icons */
+.sidebar-link .icon {
+  font-size: 1.2rem;
+}
+
+/* ---------------- PAGE CONTENT ---------------- */
+.pages {
+  flex: 1;
+  padding: 20px;
+  margin-left: 0;
+  transition: margin-left 0.3s ease-in-out;
+  width: 100%;
+  overflow-y: auto;
+}
+
+/* ---------------- RESPONSIVE RULES ---------------- */
+
+/* Desktop (≥1024px): Sidebar always visible */
+@media (min-width: 1024px) {
+  .sidebar-detail {
+    transform: translateX(0);   /* always visible */
+    position: fixed;
+  }
+
+  .pages {
+    margin-left: 220px;        /* push content */
+  }
+
+  .icon-slider {
+    display: none;             /* hide hamburger */
+  }
+
+  .admin-detail {
+    justify-content: center;
+  }
+}
+
+
+@media (max-width: 1023px) {
+  .sidebar-detail.open ~ .pages {
+   margin: 0;
+  }
+
+  .logout-btn {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  .header-admin h1 {
+    font-size: 1.1rem;
+  }
+}
+
+/* CreateJob container should shrink when sidebar is open */

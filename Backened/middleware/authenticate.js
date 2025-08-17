@@ -1,45 +1,35 @@
 import jwt from "jsonwebtoken";
-import userschema from "../Schema/userschema.js";
-import adminschema from "../Schema/adminschema.js";
+import Admin from "../Schema/adminschema.js";
+import User from "../Schema/userschema.js";
 
-// Middleware: Authenticate user or admin
-export const authenticate = async (req, res, next) => {
+const verifyToken = (req) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  if (!token) throw new Error("No token provided");
+  return jwt.verify(token, process.env.JWT_SECRET);
+};
+
+export const adminAuth = async (req, res, next) => {
   try {
-    const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      return res.status(401).json({ message: "Unauthorized: No token provided" });
-    }
-
-    const token = authHeader.split(" ")[1];
-
-    // Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    // Check in users collection first
-    let user = await userschema.findById(decoded.id).select("-password");
-
-    // If not found in users, check in admin collection
-    if (!user) {
-      user = await adminschema.findById(decoded.id).select("-password");
-    }
-
-    if (!user) {
-      return res.status(401).json({ message: "Unauthorized: User/Admin not found" });
-    }
-
-    // Attach user/admin and role to request
-    req.user = user;
-    req.role = decoded.role; // Make sure role is included in JWT payload
+    const decoded = verifyToken(req);
+    const admin = await Admin.findById(decoded.id);
+    if (!admin) return res.status(401).json({ message: "Unauthorized" });
+    req.admin = admin;
     next();
   } catch (error) {
-    return res.status(401).json({ message: "Unauthorized: Invalid token" });
+    const msg = error.name === "TokenExpiredError" ? "Token expired" : "Unauthorized";
+    res.status(401).json({ message: msg });
   }
 };
 
-
-export const authorize = (roles = []) => (req, res, next) => {
-  if (!roles.includes(req.role)) {
-    return res.status(403).json({ message: "Access denied" });
+export const userAuth = async (req, res, next) => {
+  try {
+    const decoded = verifyToken(req);
+    const user = await User.findById(decoded.id);
+    if (!user) return res.status(401).json({ message: "Unauthorized" });
+    req.user = user;
+    next();
+  } catch (error) {
+    const msg = error.name === "TokenExpiredError" ? "Token expired" : "Unauthorized";
+    res.status(401).json({ message: msg });
   }
-  next();
 };

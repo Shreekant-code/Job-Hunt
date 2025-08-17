@@ -38,9 +38,15 @@ const JobSchema = new mongoose.Schema(
     },
     admin: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Admin", 
-      required: true,
+      ref: "Admin",
+      required: true, 
     },
+    applicants: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User", 
+      },
+    ],
   },
   {
     timestamps: true,

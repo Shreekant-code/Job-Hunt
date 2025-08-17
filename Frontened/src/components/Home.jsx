@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 export const Home=()=>{
     return(
         <>
-        <main>
+        <main className="home-container">
 <div className="img-1">
     <img src="/imageone.png" alt="image" />
 </div>
@@ -20,7 +20,7 @@ export const Home=()=>{
   <NavLink to="/jobseeker">
   <button className="nav-btn">Browse Jobs</button>
 </NavLink>
-<NavLink to="/recruiter">
+<NavLink to="/post-login">
   <button className="nav-btn2">Post a Job</button>
 </NavLink>
 

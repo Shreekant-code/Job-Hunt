@@ -1,0 +1,192 @@
+/* Manage.css */
+
+/* Container */
+.manage-jobs-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading */
+.manage-jobs-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* Job Grid */
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Job Card */
+.job-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  padding: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.job-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+}
+
+/* Job Card Heading */
+.job-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+  color: #ff6b6b;
+}
+
+/* Job Details */
+.job-card p {
+  margin: 0.3rem 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* Skills Tags */
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.3rem 0 0.5rem 0;
+}
+
+.skill-tag {
+  background: #e0f7fa;
+  color: #00796b;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+/* Applicants Badge */
+.applicants-badge {
+  background: #ffecb3;
+  color: #795548;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* Job Actions */
+.job-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.job-actions button {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.view-btn {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.view-btn:hover {
+  background: #bbdefb;
+}
+
+.edit-btn {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.edit-btn:hover {
+  background: #ffe0b2;
+}
+
+.delete-btn {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.delete-btn:hover {
+  background: #ffcdd2;
+}
+
+/* Modal Backdrop */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal */
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.modal h3 {
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+/* Modal Buttons */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 0.6rem 0;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s;
+}
+
+.cancel-btn {
+  background: #eee;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background: #ddd;
+}
+
+.confirm-btn {
+  background: #c62828;
+  color: #fff;
+}
+
+.confirm-btn:hover {
+  background: #b71c1c;
+}

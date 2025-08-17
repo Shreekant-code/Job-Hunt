@@ -1,5 +1,6 @@
 import userschema from "../Schema/userschema.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken"
 export const Registeruser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -43,12 +44,15 @@ export const Loginuser = async (req, res) => {
       return res.status(400).json({ message: "Invalid Email or Password" });
     }
 
- 
-    const token = jwt.sign(
-      { id: existuser._id, role: existuser.role || "user" },
+     const token = jwt.sign(
+      { id: existuser._id, role: "user" },
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
+    
+ 
+  
+  
 
     res.status(200).json({
       message: "Login successful",

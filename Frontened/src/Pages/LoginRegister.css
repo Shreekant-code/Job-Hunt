@@ -82,6 +82,10 @@
   border-color: #93c5fd;
   box-shadow: 0 0 8px rgba(147, 197, 253, 0.5);
 }
+.go-back-btn{
+  background-color: black;
+  color: white;
+}
 
 /* Toggle text */
 .toggle-text {

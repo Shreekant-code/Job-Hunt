@@ -4,18 +4,19 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "./LoginRegister.css";
 
-export const LoginRegisterUser = () => {
+export const LoginRegisterAdmin = () => {
   const [isRegister, setRegister] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPass] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  // Redirect if user token exists
+  // Redirect if admin token exists
   useEffect(() => {
-    const userToken = localStorage.getItem("userToken");
-    if (userToken) {
-      navigate("/userdashboard", { replace: true });
+    const adminToken = localStorage.getItem("adminToken");
+    if (adminToken) {
+    navigate("/admindashboard", { replace: true });
+
     }
   }, [navigate]);
 
@@ -24,29 +25,26 @@ export const LoginRegisterUser = () => {
 
     try {
       if (isRegister) {
-        await axios.post("http://localhost:3000/registeruser", {
+        await axios.post("http://localhost:3000/admin", {
           name,
           email,
           password,
         });
         toast.success("✅ Registration successful, now login!");
         setRegister(false);
-        setName("");
         setEmail("");
-        setPass("");
+        setPassword("");
       } else {
-        const res = await axios.post("http://localhost:3000/loginuser", {
+        const res = await axios.post("http://localhost:3000/adminlogin", {
           email,
           password,
-       
         });
-        const userToken = res.data.token;
-        const userName=res.data.user.name;
-        localStorage.setItem("userToken", userToken);
-        
-localStorage.setItem("userName", userName);
-        toast.success("🎉 Login successful!");
-        navigate("/userdashboard", { replace: true });
+        const adminToken = res.data.token;
+        const adminname=res.data.admin.name;
+        localStorage.setItem("adminToken", adminToken); 
+        localStorage.setItem("adminName",adminname);
+        toast.success("🎉 Admin login successful!");
+        navigate("/admindashboard"); // redirect admin
       }
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong");
@@ -56,14 +54,11 @@ localStorage.setItem("userName", userName);
   return (
     <>
       <header className="login-header">
-        <h1 className="login-title">Welcome to the Job Portal</h1>
+        <h1 className="login-title">Admin Portal</h1>
         <p className="login-subtitle">{isRegister ? "Register" : "Login"}</p>
       </header>
 
       <section className="form-section">
-        
-      
-
         <form className="login-form" onSubmit={handleSubmit}>
           {isRegister && (
             <div className="form-group">
@@ -98,7 +93,7 @@ localStorage.setItem("userName", userName);
               id="password"
               required
               value={password}
-              onChange={(e) => setPass(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
@@ -128,3 +123,4 @@ localStorage.setItem("userName", userName);
     </>
   );
 };
+

@@ -1,0 +1,153 @@
+.dashboard-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.dashboard-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.dashboard-header{
+  display: flex;
+
+}
+
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.job-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.job-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.job-company,
+.job-salary,
+.job-deadline {
+  color: #555;
+  margin: 6px 0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.icon {
+  margin-right: 4px;
+}
+
+.job-type {
+  display: inline-block;
+  background: #e0e7ff;
+  color: #3730a3;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  margin: 6px 0;
+  width: fit-content;
+}
+
+.job-skills {
+  margin: 8px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-badge {
+  background: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.job-desc {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #444;
+  flex-grow: 1;
+}
+
+.apply-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #3b82f6;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.apply-btn:hover {
+  background: #2563eb;
+}
+
+.closed-btn {
+  background: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed;
+}
+
+/* 🔹 Responsive tweaks */
+@media (max-width: 768px) {
+  .dashboard-title {
+    font-size: 20px;
+  }
+
+  .job-card {
+    padding: 14px;
+  }
+
+  .job-title {
+    font-size: 16px;
+  }
+
+  .job-desc {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .job-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-title {
+    font-size: 18px;
+  }
+
+  .apply-btn {
+    font-size: 14px;
+    padding: 8px;
+  }
+}

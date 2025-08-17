@@ -1,0 +1,145 @@
+/* ---------------- CREATE JOB PAGE ---------------- */
+
+/* Container fits inside .pages (no full screen override) */
+.createjob-container {
+  width: 100%;
+  background: #f3f4f6;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* keep content aligned to top */
+  padding: 20px;
+  min-height: calc(100vh - 80px); /* adjust to exclude header */
+  box-sizing: border-box;
+}
+
+.createjob-card {
+  width: 100%;
+  max-width: 800px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.createjob-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  color: #2563eb;
+  margin-bottom: 20px;
+}
+
+/* Form Grid */
+.createjob-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
+}
+
+/* Full-width row */
+.full-width {
+  grid-column: span 2;
+}
+
+/* Actions */
+.form-actions {
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.btn-submit {
+  background: #2563eb;
+  color: #ffffff;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-submit:hover {
+  background: #1e40af;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+/* 📱 Mobile (≤768px): Stack into 1 column */
+@media (max-width: 768px) {
+  .createjob-form {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .full-width {
+    grid-column: span 1;
+  }
+
+  .form-actions {
+    grid-column: span 1;
+    justify-content: stretch;
+  }
+
+  .btn-submit {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 14px;
+  }
+}
+
+/* Small mobile (≤450px): Reduce padding/font size */
+@media (max-width: 450px) {
+  .createjob-card {
+    padding: 15px;
+  }
+
+  .createjob-title {
+    font-size: 1.4rem;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+}
