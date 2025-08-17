@@ -112,10 +112,3 @@ It’s a **learning platform**, a **secure backend foundation**, and a **springb
 - Impress employers with a **visionary, real-world project**
 
 ---
-
-## 📦 Getting Started
-
-### 1. Clone
-```bash
-git clone https://github.com/yourusername/job-portal-api.git
-cd job-portal-api
