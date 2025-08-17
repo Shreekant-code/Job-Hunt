@@ -1,14 +1,11 @@
-/* Manage.css */
-
 /* Container */
 .manage-jobs-container {
+  padding: 2rem;
   max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+  margin: auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Heading */
 .manage-jobs-container h2 {
   text-align: center;
   margin-bottom: 2rem;
@@ -18,39 +15,41 @@
 /* Job Grid */
 .job-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
 /* Job Card */
 .job-card {
-  background: #fff;
+  background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   padding: 1.5rem;
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  cursor: pointer;
 }
 
 .job-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.2);
 }
 
-/* Job Card Heading */
+/* Job Header */
 .job-card h3 {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 0.8rem;
   font-size: 1.2rem;
+  margin-bottom: 0.8rem;
   color: #ff6b6b;
 }
 
-/* Job Details */
+/* Job Info */
 .job-card p {
   margin: 0.3rem 0;
-  color: #555;
   font-size: 0.95rem;
+  color: #555;
 }
 
 /* Skills Tags */
@@ -58,135 +57,153 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin: 0.3rem 0 0.5rem 0;
+  margin: 0.5rem 0;
 }
 
 .skill-tag {
-  background: #e0f7fa;
-  color: #00796b;
+  background-color: #f0f4ff;
+  color: #3b5bff;
   padding: 0.25rem 0.6rem;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 0.85rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.skill-tag:hover {
+  background-color: #3b5bff;
+  color: #fff;
+  transform: scale(1.05);
 }
 
 /* Applicants Badge */
 .applicants-badge {
-  background: #ffecb3;
-  color: #795548;
-  padding: 0.2rem 0.5rem;
-  border-radius: 6px;
-  font-weight: 600;
+  background-color: #ff6b6b;
+  color: #fff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 50%;
   font-size: 0.85rem;
 }
 
-/* Job Actions */
+/* Job Actions Buttons */
 .job-actions {
-  margin-top: 1rem;
   display: flex;
   gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 .job-actions button {
+  flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.3rem;
+  padding: 0.5rem 0.6rem;
   border: none;
   border-radius: 8px;
-  padding: 0.5rem 0.8rem;
-  cursor: pointer;
   font-size: 0.9rem;
-  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .view-btn {
-  background: #e3f2fd;
-  color: #1565c0;
+  background-color: #00b894;
+  color: #fff;
 }
 
 .view-btn:hover {
-  background: #bbdefb;
+  background-color: #019874;
+  transform: scale(1.05);
 }
 
 .edit-btn {
-  background: #fff3e0;
-  color: #ef6c00;
+  background-color: #0984e3;
+  color: #fff;
 }
 
 .edit-btn:hover {
-  background: #ffe0b2;
+  background-color: #0652c5;
+  transform: scale(1.05);
 }
 
 .delete-btn {
-  background: #ffebee;
-  color: #c62828;
+  background-color: #d63031;
+  color: #fff;
 }
 
 .delete-btn:hover {
-  background: #ffcdd2;
+  background-color: #a71d2a;
+  transform: scale(1.05);
 }
 
-/* Modal Backdrop */
+/* Modal Styles */
 .modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
+  background-color: rgba(0,0,0,0.5);
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 1000;
+  justify-content: center;
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
 }
 
-/* Modal */
 .modal {
-  background: #fff;
+  background-color: #fff;
   border-radius: 12px;
   padding: 2rem;
   max-width: 400px;
   width: 90%;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  animation: slideUp 0.3s ease;
 }
 
 .modal h3 {
   margin-bottom: 1.5rem;
   color: #333;
-  font-size: 1.1rem;
 }
 
-/* Modal Buttons */
 .modal-actions {
   display: flex;
-  justify-content: space-between;
   gap: 1rem;
-}
-
-.modal-actions button {
-  flex: 1;
-  padding: 0.6rem 0;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: background 0.2s;
+  justify-content: center;
 }
 
 .cancel-btn {
-  background: #eee;
-  color: #333;
+  background-color: #b2bec3;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
 .cancel-btn:hover {
-  background: #ddd;
+  background-color: #636e72;
 }
 
 .confirm-btn {
-  background: #c62828;
+  background-color: #d63031;
   color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .confirm-btn:hover {
-  background: #b71c1c;
+  background-color: #a71d2a;
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }

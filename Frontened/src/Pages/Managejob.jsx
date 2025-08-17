@@ -32,38 +32,25 @@ export const ManageJob = () => {
     fetchJobs();
   }, []);
 
-  const handleDeleteById = async () => {
-    if (!deleteJobId) return;
-    try {
-      const res = await axios.delete(`http://localhost:3000/deletejob/${deleteJobId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (res.status === 200) {
-        setJobs((prevJobs) => prevJobs.filter((job) => job._id !== deleteJobId));
-        setDeleteJobId(null);
-      }
-    } catch (error) {
-      console.error("Failed to delete job:", error);
-      alert("Error deleting job. Please try again.");
-    }
-  };
-
-  const handleView = async()=> {
-    try {
-      const res = await axios.delete(`http://localhost:3000/jobsUpdate/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      
-    } catch (error) {
-      
-    }
-    
-  };
-
   const handleEdit = (job) => {
     navigate("/create-job", { state: { job } }); 
+  };
+
+  const handleView = (job) => {
+    navigate(`/job/${job._id}`);
+  };
+
+  const handleDeleteById = async () => {
+    try {
+      await axios.delete(`http://localhost:3000/jobs/${deleteJobId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setJobs(jobs.filter(job => job._id !== deleteJobId));
+      setDeleteJobId(null);
+    } catch (err) {
+      setError("Failed to delete job");
+    }
+  };
 
   return (
     <div className="manage-jobs-container">
@@ -108,7 +95,6 @@ export const ManageJob = () => {
         ))}
       </div>
 
-    
       {deleteJobId && (
         <div className="modal-backdrop">
           <div className="modal">
@@ -122,5 +108,4 @@ export const ManageJob = () => {
       )}
     </div>
   );
-}
-}
+};
