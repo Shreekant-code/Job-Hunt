@@ -1,7 +1,16 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useJobs } from "../components/Jobcontext"; 
 import axios from "axios";
-import { FiMapPin, FiDollarSign, FiClock, FiBriefcase, FiCheckCircle, FiXCircle } from "react-icons/fi";
+import { 
+  FiMapPin, 
+  FiDollarSign, 
+  FiClock, 
+  FiBriefcase, 
+  FiCheckCircle, 
+  FiXCircle 
+} from "react-icons/fi";
+import { toast } from "react-toastify";
 import "./userdashboard.css";
 
 export const Userdashboard = () => {
@@ -9,7 +18,7 @@ export const Userdashboard = () => {
   const token = localStorage.getItem("userToken");
 
   const [username, setUsername] = useState("");
-  const [jobData, setJobData] = useState([]);
+  const { jobs, setJobs } = useJobs(); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -32,7 +41,7 @@ export const Userdashboard = () => {
         const res = await axios.get("http://localhost:3000/jobs", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setJobData(res.data.jobs || []);
+        setJobs(res.data.jobs || []); 
       } catch (err) {
         if (err.response?.status === 401) {
           localStorage.removeItem("userToken");
@@ -47,7 +56,7 @@ export const Userdashboard = () => {
     };
 
     fetchJobs();
-  }, [token, navigate]);
+  }, [token, navigate, setJobs]);
 
   // Logout function
   const handleLogout = () => {
@@ -56,12 +65,33 @@ export const Userdashboard = () => {
     navigate("/", { replace: true });
   };
 
+  // Apply to job
+  const handleApply = async (jobId) => {
+    try {
+      const res = await axios.post(
+        `http://localhost:3000/${jobId}/apply`,
+        {}, 
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      toast.success(res.data.message || "Application submitted successfully!");
+    } catch (error) {
+      if (error.response?.status === 400) {
+        toast.error("You have already applied to this job!");
+      } else if (error.response?.status === 401) {
+        toast.error("Please login again.");
+        handleLogout();
+      } else {
+        toast.error("Something went wrong. Try again later.");
+      }
+    }
+  };
+
   return (
     <>
-      <header className="header-admin">
-        <div className="admin-detail">
+      <header className="header-user">
+        <div className="user-detail">
           <h1>Welcome {username || "User"}</h1>
-          <button className="logout-btn" onClick={handleLogout}>
+          <button className="logout-btn-user" onClick={handleLogout}>
             Logout
           </button>
         </div>
@@ -75,16 +105,16 @@ export const Userdashboard = () => {
         {loading && <p>⏳ Loading jobs...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
 
-        <div className="job-grid">
-          {!loading && !error && jobData.length === 0 && (
+        <div className="job-grid-user">
+          {!loading && !error && jobs.length === 0 && (
             <p>No job openings available right now.</p>
           )}
 
-          {jobData.map((job) => {
+          {jobs.map((job) => {
             const isExpired = new Date(job.lastDate) < new Date();
 
             return (
-              <div key={job._id} className="job-card">
+              <div key={job._id} className="job-card-user">
                 <h3 className="job-title">{job.title}</h3>
                 <p className="job-company">
                   <FiBriefcase className="icon" /> {job.company}{" "}
@@ -117,10 +147,7 @@ export const Userdashboard = () => {
                 <button
                   className={isExpired ? "apply-btn closed-btn" : "apply-btn"}
                   disabled={isExpired}
-                  onClick={() =>
-                    !isExpired &&
-                    alert(`Applied to ${job.title} at ${job.company}`)
-                  }
+                  onClick={() => !isExpired && handleApply(job._id)}
                 >
                   {isExpired ? (
                     <>

@@ -59,7 +59,7 @@ const routes = [
   { path: "/admindashboard", name: "Dashboard", icon: <FaHome /> },
   { path: "/admindashboard/post-job", name: "Post Job", icon: <FaPlusCircle /> },
   { path: "/admindashboard/manage-jobs", name: "Manage Jobs", icon: <FaBriefcase /> },
-  { path: "/admindashboard/applicants", name: "Applied Applicants", icon: <FaUsers /> },
+  { path: "/admindashboard/jobs/applicants/jobId", name: "Applied Applicants", icon: <FaUsers /> },
   { path: "/admindashboard/reports", name: "Reports & Analytics", icon: <FaChartLine /> },
-  { path: "/admindashboard/details", name: "Settings", icon: <FaCog /> },
+  { path: "/admindashboard/details", name: "My Profile", icon: <FaCog /> },
 ];

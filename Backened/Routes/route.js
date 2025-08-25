@@ -10,6 +10,9 @@ import {
   updateJobById ,getAdminJobs
 } from "../operations/adminwork.js";
 
+import { applyJob } from "../operations/operationuser.js";
+
+
  
 
 const router = express.Router();
@@ -33,7 +36,7 @@ router.get("/jobs",userAuth, getJob);
 router.get("/jobs/:id",adminAuth, getJobById);
 
 router.get("/my-jobs", adminAuth, getAdminJobs);
-
+router.post("/:jobId/apply", userAuth, applyJob);
 
 
 export default router;

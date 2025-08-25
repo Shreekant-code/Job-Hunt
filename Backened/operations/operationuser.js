@@ -1,6 +1,7 @@
 import userschema from "../Schema/userschema.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken"
+import JobSchema from "../Schema/JobSchema.js";
 export const Registeruser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -68,3 +69,32 @@ export const Loginuser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+
+
+
+
+export const applyJob = async (req, res) => {
+  try {
+    const { jobId } = req.params;
+    const userId = req.user._id; // from userAuth middleware
+
+    const job = await JobSchema.findById(jobId);
+    if (!job) return res.status(404).json({ message: "Job not found" });
+
+    // Use some() with toString to compare ObjectId
+    if (job.applicants.some(app => app.toString() === userId.toString())) {
+      return res.status(400).json({ message: "You already applied to this job" });
+    }
+
+    job.applicants.push(userId);
+    await job.save();
+
+    res.status(200).json({ message: "Applied successfully", job });
+  } catch (error) {
+    console.error("Apply Job Error:", error);
+    res.status(500).json({ message: error.message });
+  }
+};
+

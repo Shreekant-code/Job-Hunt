@@ -1,58 +1,111 @@
-/* Container */
+/* ================================
+   Container
+================================ */
 .manage-jobs-container {
   padding: 2rem;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f6fa;
 }
 
 .manage-jobs-container h2 {
   text-align: center;
   margin-bottom: 2rem;
   color: #333;
+  font-size: 2rem;
+  letter-spacing: 1px;
 }
 
-/* Job Grid */
+/* ================================
+   Job Grid
+================================ */
 .job-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 
-/* Job Card */
+/* ================================
+   Job Card with Flip Effect
+================================ */
 .job-card {
-  background-color: #fff;
+  perspective: 1000px;
+}
+
+.job-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.job-card:hover .job-card-inner {
+  transform: rotateY(180deg);
+}
+
+.job-card-front,
+.job-card-back {
+  position: relative;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  width: 100%;
+  min-height: 350px;
+  backface-visibility: hidden;
+  transition: all 0.3s ease;
 }
 
-.job-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+.job-card-front {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-/* Job Header */
+.job-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: #2d3436;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ================================
+   Job Header
+================================ */
 .job-card h3 {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-bottom: 0.8rem;
   color: #ff6b6b;
 }
 
-/* Job Info */
+/* ================================
+   Job Info
+================================ */
 .job-card p {
   margin: 0.3rem 0;
   font-size: 0.95rem;
   color: #555;
+  line-height: 1.3;
 }
 
-/* Skills Tags */
+/* ================================
+   Skills Tags
+================================ */
 .skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -61,30 +114,44 @@
 }
 
 .skill-tag {
-  background-color: #f0f4ff;
-  color: #3b5bff;
+  background-color: #dfe6e9;
+  color: #0984e3;
   padding: 0.25rem 0.6rem;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 0.85rem;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .skill-tag:hover {
-  background-color: #3b5bff;
+  background-color: #0984e3;
   color: #fff;
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
-/* Applicants Badge */
+/* ================================
+   Applicants Badge
+================================ */
 .applicants-badge {
-  background-color: #ff6b6b;
-  color: #fff;
-  padding: 0.25rem 0.6rem;
-  border-radius: 50%;
+  min-width: 30px;
+  height: 30px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
   font-size: 0.85rem;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #ff6b6b, #ff4757);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
 }
 
-/* Job Actions Buttons */
+.applicants-badge:hover {
+  transform: scale(1.1);
+}
+
+/* ================================
+   Job Actions Buttons
+================================ */
 .job-actions {
   display: flex;
   gap: 0.5rem;
@@ -97,12 +164,12 @@
   align-items: center;
   justify-content: center;
   gap: 0.3rem;
-  padding: 0.5rem 0.6rem;
+  padding: 0.6rem 0.8rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .view-btn {
@@ -135,7 +202,9 @@
   transform: scale(1.05);
 }
 
-/* Modal Styles */
+/* ================================
+   Modal Styles
+================================ */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -150,6 +219,9 @@
   animation: fadeIn 0.3s ease;
 }
 
+.nojobs{
+  color: black;
+}
 .modal {
   background-color: #fff;
   border-radius: 12px;
@@ -177,7 +249,7 @@
   color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .cancel-btn:hover {
@@ -189,7 +261,7 @@
   color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .confirm-btn:hover {
@@ -197,7 +269,9 @@
   transform: scale(1.05);
 }
 
-/* Animations */
+/* ================================
+   Animations
+================================ */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -206,4 +280,27 @@
 @keyframes slideUp {
   from { transform: translateY(50px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
+}
+
+/* ================================
+   Responsive
+================================ */
+@media (max-width: 768px) {
+  .job-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .job-actions {
+    flex-direction: column;
+  }
+
+  .skills-container {
+    justify-content: center;
+  }
+
+  .job-card h3 {
+    font-size: 1.1rem;
+  }
 }

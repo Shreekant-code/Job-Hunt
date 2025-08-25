@@ -1,4 +1,6 @@
-/* ---------------- CREATE JOB PAGE ---------------- */
+/* ===========================
+   Create Job Form Styling
+   =========================== */
 
 /* Container fits inside .pages (no full screen override) */
 .createjob-container {
@@ -8,7 +10,7 @@
   justify-content: center;
   align-items: flex-start; /* keep content aligned to top */
   padding: 20px;
-  min-height: calc(100vh - 80px); /* adjust to exclude header */
+  min-height: calc(100vh - 80px); /* exclude header height */
   box-sizing: border-box;
 }
 
@@ -19,6 +21,20 @@
   border-radius: 12px;
   padding: 30px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  /* ✨ Animation */
+  animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* Title */
@@ -30,7 +46,9 @@
   margin-bottom: 20px;
 }
 
-/* Form Grid */
+/* ===========================
+   Form Grid Layout
+   =========================== */
 .createjob-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -60,6 +78,7 @@
   transition: 0.2s;
   width: 100%;
   box-sizing: border-box;
+  background: #fff;
 }
 
 .form-group input:focus,
@@ -69,12 +88,19 @@
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
 }
 
+/* Textarea resizing */
+.form-group textarea {
+  resize: vertical;
+}
+
 /* Full-width row */
 .full-width {
   grid-column: span 2;
 }
 
-/* Actions */
+/* ===========================
+   Actions
+   =========================== */
 .form-actions {
   grid-column: span 2;
   display: flex;
@@ -97,9 +123,17 @@
   background: #1e40af;
 }
 
-/* ---------------- RESPONSIVE ---------------- */
+/* Disabled button state */
+.btn-submit:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
 
-/* 📱 Mobile (≤768px): Stack into 1 column */
+/* ===========================
+   Responsive Design
+   =========================== */
+
+/* 📱 Tablet & Mobile (≤768px): Stack into 1 column */
 @media (max-width: 768px) {
   .createjob-form {
     grid-template-columns: 1fr;
@@ -122,7 +156,7 @@
   }
 }
 
-/* Small mobile (≤450px): Reduce padding/font size */
+/* 📱 Small mobile (≤450px): Reduce padding/font size */
 @media (max-width: 450px) {
   .createjob-card {
     padding: 15px;
