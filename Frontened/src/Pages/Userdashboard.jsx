@@ -38,7 +38,7 @@ export const Userdashboard = () => {
     const fetchJobs = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:3000/jobs", {
+        const res = await axios.get("https://job-hunt-3-9hns.onrender.com/jobs", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setJobs(res.data.jobs || []); 
