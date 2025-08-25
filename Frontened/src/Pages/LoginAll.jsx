@@ -24,7 +24,7 @@ export const LoginRegisterUser = () => {
 
     try {
       if (isRegister) {
-        await axios.post("http://localhost:3000/registeruser", {
+        await axios.post("https://job-hunt-3-9hns.onrender.com/registeruser", {
           name,
           email,
           password,
@@ -35,7 +35,7 @@ export const LoginRegisterUser = () => {
         setEmail("");
         setPass("");
       } else {
-        const res = await axios.post("http://localhost:3000/loginuser", {
+        const res = await axios.post("https://job-hunt-3-9hns.onrender.com/loginuser", {
           email,
           password,
        

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useJobs } from "../components/Jobcontext"; 
+import { useJobs } from "../components/JobContext"; 
 import axios from "axios";
 import { 
   FiMapPin, 
@@ -69,7 +69,7 @@ export const Userdashboard = () => {
   const handleApply = async (jobId) => {
     try {
       const res = await axios.post(
-        `http://localhost:3000/${jobId}/apply`,
+        `https://job-hunt-3-9hns.onrender.com/${jobId}/apply`,
         {}, 
         { headers: { Authorization: `Bearer ${token}` } }
       );

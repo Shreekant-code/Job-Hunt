@@ -30,7 +30,7 @@ export const Applicants = () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:3000/jobs/applicants/${jobId}`,
+          `https://job-hunt-3-9hns.onrender.com/jobs/applicants/${jobId}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 

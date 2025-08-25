@@ -35,7 +35,7 @@ export const CreateJob = () => {
         lastDate,
       };
 
-      const res = await axios.post("http://localhost:3000/create", payload, {
+      const res = await axios.post("https://job-hunt-3-9hns.onrender.com/create", payload, {
         headers: {
           Authorization: `Bearer ${token}`, // include token
           "Content-Type": "application/json",

@@ -29,7 +29,7 @@ export const ManageJob = () => {
   const fetchJobs = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:3000/my-jobs", {
+      const res = await axios.get("https://job-hunt-3-9hns.onrender.com/my-jobs", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setJobs(res.data.jobs || []);
@@ -47,7 +47,7 @@ export const ManageJob = () => {
   // Delete job
   const handleDeleteById = async () => {
     try {
-      await axios.delete(`http://localhost:3000/deletejob/${deleteJobId}`, {
+      await axios.delete(`https://job-hunt-3-9hns.onrender.com/deletejob/${deleteJobId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setJobs((prev) => prev.filter((job) => job._id !== deleteJobId));
