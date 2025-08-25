@@ -1,226 +1,183 @@
-/* ================================
-   Applicants Container
-================================ */
 .applicants-container {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 15px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
 }
 
 .title {
-  text-align: center;
   font-size: 2rem;
-  font-weight: 700;
-  color: #34495e;
-  margin-bottom: 0.5rem;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .total-count {
   text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-  color: brown;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #555;
 }
 
 .total-count span {
-  font-weight: 700;
-  color: #27ae60;
+  color: #ff6b6b;
+  font-weight: bold;
 }
 
-/* ================================
-   Search Bar
-================================ */
 .search-bar {
   display: flex;
   align-items: center;
   max-width: 400px;
-  margin: 0 auto 2rem auto;
-  background: #f0f4ff;
-  padding: 0.4rem 0.6rem;
-  border-radius: 12px;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  margin: 0 auto 20px auto;
+  background: #f8f8f8;
+  padding: 8px 12px;
+  border-radius: 25px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
 }
 
 .search-bar:hover {
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
 }
 
 .search-bar input {
-  flex: 1;
   border: none;
   outline: none;
-  padding: 0.5rem 0.5rem 0.5rem 0.3rem;
+  flex: 1;
+  padding: 8px;
+  border-radius: 25px;
   font-size: 1rem;
   background: transparent;
-  color: #333;
 }
 
 .search-icon {
-  margin-right: 0.5rem;
-  color: #3498db;
+  margin-right: 10px;
+  color: #ff6b6b;
   font-size: 1.2rem;
 }
 
-/* ================================
-   Table Styles
-================================ */
 .table-responsive {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border-radius: 10px;
 }
 
 .applicants-table {
   width: 100%;
+  min-width: 600px; /* ensures horizontal scroll on small screens */
   border-collapse: collapse;
-  min-width: 600px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.applicants-table thead {
+  background: linear-gradient(90deg, #ff6b6b, #ff8787);
+  color: #fff;
 }
 
 .applicants-table th,
 .applicants-table td {
-  padding: 0.8rem 1rem;
+  padding: 12px 15px;
   text-align: left;
   font-size: 0.95rem;
 }
 
-.applicants-table thead {
-  background: linear-gradient(90deg, #3498db, #6c5ce7);
-  color: white;
-  font-weight: 600;
-}
-
-.applicants-table thead th {
-  border-bottom: 2px solid #fff2;
-}
-
 .applicants-table tbody tr {
-  background: #fff;
+  border-bottom: 1px solid #f1f1f1;
   transition: all 0.3s ease;
 }
 
-.applicants-table tbody tr:nth-child(even) {
-  background: #f9f9f9;
-}
-
 .applicants-table tbody tr:hover {
-  background: #f0f4ff;
-  transform: scale(1.01);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-.applicants-table td {
-  vertical-align: middle;
-  border-bottom: 1px solid #eee;
-}
-
-.icon {
-  vertical-align: middle;
-  margin-right: 0.3rem;
-  color: #3498db;
+  background: #ffe6e6;
+  transform: scale(1.02);
 }
 
 .resume-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  color: #27ae60;
+  color: #1e90ff;
   font-weight: 500;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  transition: 0.3s;
+}
+
+.resume-link .icon {
+  margin-right: 5px;
 }
 
 .resume-link:hover {
-  color: #2ecc71;
   text-decoration: underline;
+  color: #ff6b6b;
 }
 
-/* Loading & No Data */
-.loading,
-.no-data {
+.no-resume {
+  color: #999;
+  font-style: italic;
+}
+
+.loading, .no-data {
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #666;
-  padding: 2rem 0;
+  margin: 20px 0;
 }
 
-/* ================================
-   Responsive
-================================ */
-@media (max-width: 1024px) {
-  .title {
-    font-size: 1.8rem;
+/* ----------------------------- */
+/* MOBILE RESPONSIVE STYLES      */
+/* ----------------------------- */
+@media (max-width: 768px) {
+  .table-responsive {
+    overflow-x: auto; /* horizontal scroll for smaller tablets */
+  }
+
+  .applicants-table {
+    min-width: 500px; /* table stays scrollable */
   }
 
   .search-bar {
-    max-width: 300px;
+    max-width: 90%;
   }
 }
 
-@media (max-width: 768px) {
-  .applicants-table {
-    min-width: 100%;
+/* ----------------------------- */
+/* EXTRA SMALL SCREENS < 480px  */
+/* ----------------------------- */
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .total-count {
     font-size: 0.9rem;
   }
 
   .search-bar {
     max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .header-applicants h2,
-  .title {
-    font-size: 1.4rem;
-  }
-
-  .search-bar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
+    padding: 6px 10px;
   }
 
   .search-bar input {
-    width: 100%;
-    padding: 0.5rem;
+    font-size: 0.85rem;
   }
 
-  .applicants-table thead {
-    display: none; /* hide header for mobile */
+  .table-responsive {
+    overflow-x: auto; /* slider effect */
+    -webkit-overflow-scrolling: touch;
   }
 
-  .applicants-table,
-  .applicants-table tbody,
-  .applicants-table tr,
+  .applicants-table {
+    min-width: 450px; /* force horizontal scroll */
+  }
+
+  .applicants-table th,
   .applicants-table td {
-    display: block;
-    width: 100%;
-  }
-
-  .applicants-table tr {
-    margin-bottom: 1rem;
-    background: #f0f4ff;
-    border-radius: 12px;
-    padding: 0.5rem;
-  }
-
-  .applicants-table td {
-    text-align: right;
-    padding: 0.5rem;
-    border: none;
-    position: relative;
-  }
-
-  .applicants-table td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 0.8rem;
-    font-weight: 600;
-    color: #34495e;
-    text-transform: capitalize;
+    font-size: 0.85rem;
+    padding: 10px;
   }
 
   .resume-link {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 }
+

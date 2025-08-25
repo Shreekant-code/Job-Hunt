@@ -1,38 +1,45 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FiMail, FiFileText, FiSearch } from "react-icons/fi";
 import { toast } from "react-toastify";
-import "./Applicant.css"
+import "./Applicant.css";
 
 export const Applicants = () => {
-  const {jobId}=useParams();
+  const { jobId } = useParams();
+  const navigate = useNavigate();
   const [applicants, setApplicants] = useState([]);
   const [filteredApplicants, setFilteredApplicants] = useState([]);
   const [jobTitle, setJobTitle] = useState("");
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-console.log("Job ID from URL:", jobId);
+
   const token = localStorage.getItem("adminToken");
 
   useEffect(() => {
+    if (!jobId) {
+      toast.error("No Job ID provided in URL");
+      navigate("/admindashboard");
+    }
+  }, [jobId, navigate]);
+
+  useEffect(() => {
+    if (!jobId) return;
+
     const fetchApplicants = async () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:5000/jobs/applicants/${jobId}`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
+          `http://localhost:3000/jobs/applicants/${jobId}`,
+          { headers: { Authorization: `Bearer ${token}` } }
         );
-        console.log(res.data);
 
         setApplicants(res.data.applicants || []);
         setFilteredApplicants(res.data.applicants || []);
         setJobTitle(res.data.jobTitle || "Job Applicants");
       } catch (err) {
         console.error(err);
-        toast.error(err.response?.data?.message || "Failed to fetch applicants");
+        toast.error(err.response?.data.message || "Failed to fetch applicants");
       } finally {
         setLoading(false);
       }
@@ -41,7 +48,6 @@ console.log("Job ID from URL:", jobId);
     fetchApplicants();
   }, [jobId, token]);
 
-  // Search filter
   useEffect(() => {
     if (!search) {
       setFilteredApplicants(applicants);
@@ -64,7 +70,7 @@ console.log("Job ID from URL:", jobId);
         Total Applicants: <span>{filteredApplicants.length}</span>
       </p>
 
-      {/* 🔍 Search Bar */}
+      {/* Search Bar */}
       <div className="search-bar">
         <FiSearch className="search-icon" />
         <input
@@ -109,7 +115,7 @@ console.log("Job ID from URL:", jobId);
                         <FiFileText className="icon" /> View Resume
                       </a>
                     ) : (
-                      "No Resume"
+                      <span className="no-resume">No Resume</span>
                     )}
                   </td>
                 </tr>

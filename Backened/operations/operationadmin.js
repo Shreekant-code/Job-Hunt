@@ -2,7 +2,7 @@ import Admin from "../Schema/adminschema.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import Job from "../Schema/JobSchema.js"; // ✅ use Job instead of JobSchema for clarity
-
+import mongoose from "mongoose";
 // ------------------ REGISTER ADMIN ------------------
 export const Registeradmin = async (req, res) => {
   try {
@@ -73,7 +73,6 @@ export const LoginAdmin = async (req, res) => {
 };
 
 
-
 export const getApplicantsByJob = async (req, res) => {
   try {
     const { jobId } = req.params;
@@ -81,20 +80,20 @@ export const getApplicantsByJob = async (req, res) => {
 
     // Validate jobId
     if (!mongoose.Types.ObjectId.isValid(jobId)) {
+      console.log("Job ID is invalid");
       return res.status(400).json({ message: "Invalid Job ID" });
+    } else {
+      console.log("Job ID is valid ✅");
     }
 
-    const adminId = req.admin._id; // from adminAuth middleware
+    const adminId = req.admin._id;
 
     const job = await Job.findById(jobId)
       .populate("applicants", "name email resume")
       .populate("admin", "name email");
 
-    if (!job) {
-      return res.status(404).json({ message: "Job not found" });
-    }
+    if (!job) return res.status(404).json({ message: "Job not found" });
 
-    // Safely check admin
     if (!job.admin || job.admin._id.toString() !== adminId.toString()) {
       return res.status(403).json({ message: "Unauthorized" });
     }
@@ -104,7 +103,7 @@ export const getApplicantsByJob = async (req, res) => {
       applicants: job.applicants 
     });
   } catch (error) {
-    console.error("Error fetching applicants:", error.message);
+    console.error("Server error in getApplicantsByJob:", error);
     res.status(500).json({ message: "Server error while fetching applicants" });
   }
 };
